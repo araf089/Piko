@@ -56,12 +56,16 @@ Piko is a little blue dome with a big personality. Leave your phone on a stand, 
 
 **Bangla works too:** `ইউটিউব খোল` · `ব্রাইটনেস কমাও` · `ব্রাইটনেস বাড়াও` · `আরাফ কে গুগলে সার্চ করো`
 
-## Install
+## Download
 
-1. **Build the APK on GitHub (no Android Studio needed)**
-   - Create a **private** GitHub repo and upload the contents of this folder (include the hidden `.github` folder).
-   - Open **Actions → Build APK → Run workflow**. When it turns green, download **piko-apk**.
-2. Unzip it and install `app-debug.apk` on your phone (allow *Install unknown apps* if asked).
+**[⬇️ Download the latest Piko.apk](https://github.com/araf089/Piko/releases/latest/download/Piko.apk)**
+
+All versions: [Releases page](https://github.com/araf089/Piko/releases/latest)
+
+1. Download `Piko.apk` on your Android phone and tap it to install (allow *Install unknown apps* if asked; Play Protect may warn, choose *Install anyway*).
+2. Open Piko and allow the microphone.
+3. In **Settings (⚙)**, paste your own **free Gemini API key** from [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) and tap **Save key**.
+4. Turn on **Notification access** and **Accessibility → Piko**, then tap the dome and start talking!
 
 ## First-time setup
 
