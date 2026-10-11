@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌙 Piko
+#  Piko
 
 **Your cute, friendly AI phone buddy for Android**
 
@@ -14,7 +14,7 @@ Made with 💙 by **Araf** · Discord: **araf089**
 
 ---
 
-## ✨ What is Piko?
+## What is Piko?
 
 Piko is a little blue dome with a big personality. Leave your phone on a stand, tap Piko once, and just talk. It listens, answers like a close friend, and can operate your phone by voice. It also reacts to the world around it: it sleeps when idle, gets happy when you plug in the charger, dances when music plays, and gives a suspicious side-eye when a notification arrives.
 
@@ -56,14 +56,14 @@ Piko is a little blue dome with a big personality. Leave your phone on a stand, 
 
 **Bangla works too:** `ইউটিউব খোল` · `ব্রাইটনেস কমাও` · `ব্রাইটনেস বাড়াও` · `আরাফ কে গুগলে সার্চ করো`
 
-## 📲 Install
+## Install
 
 1. **Build the APK on GitHub (no Android Studio needed)**
    - Create a **private** GitHub repo and upload the contents of this folder (include the hidden `.github` folder).
    - Open **Actions → Build APK → Run workflow**. When it turns green, download **piko-apk**.
 2. Unzip it and install `app-debug.apk` on your phone (allow *Install unknown apps* if asked).
 
-## 🚀 First-time setup
+## First-time setup
 
 1. Open Piko and allow the **microphone**.
 2. The **Settings** screen opens on first launch: paste your **Gemini API key** and tap **Save key**.
@@ -75,7 +75,7 @@ Piko is a little blue dome with a big personality. Leave your phone on a stand, 
 5. The first time you ask for brightness, allow **Modify system settings**.
 6. **Tap the dome** to start talking, and tap again to stop.
 
-## 🔐 Permissions & privacy
+## Permissions & privacy
 
 | Permission | Why |
 |---|---|
@@ -88,7 +88,7 @@ Piko is a little blue dome with a big personality. Leave your phone on a stand, 
 
 Your API key is stored privately inside the app on your phone. Only the text of your questions is sent to Gemini. Keep your GitHub repo **private** and never share your key.
 
-## 💡 Tips & troubleshooting
+## Tips & troubleshooting
 
 - Piko listens and animates while the **app is on screen**. It pauses when you switch apps and resumes when you come back.
 - For reliable Bangla, say **"speak bangla"**. Install the Bengali voice under *Settings → Text-to-speech → Google → Install voice data*.
@@ -96,7 +96,7 @@ Your API key is stored privately inside the app on your phone. Only the text of 
 - If Piko says it can't reach its brain, check your internet and your API key in Settings.
 - Gemini's free tier is rate-limited. If you hit the limit, wait a minute and try again.
 
-## 🧩 Project structure
+## Project structure
 
 ```
 piko/
@@ -110,7 +110,7 @@ piko/
 └─ .github/workflows/build.yml   # Builds the APK on GitHub
 ```
 
-## 👤 About
+## About
 
 | | |
 |---|---|
