@@ -4,7 +4,7 @@
 
 **Your cute, friendly AI phone buddy for Android**
 
-*Talk to it in English or Bangla · it opens apps, searches, controls your phone — and reacts with adorable animations.*
+*Talk to it in English or Bangla · it opens apps, searches, controls your phone and reacts with adorable animations.*
 
 Made with 💙 by **Araf** · Discord: **araf089**
 
