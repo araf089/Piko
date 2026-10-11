@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Piko</title><style>
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;background:#000;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+#stage,#rig{position:fixed;inset:0}
+#rig{will-change:transform}
+#rig>*{position:absolute}
+#ball{background:radial-gradient(ellipse 85% 95% at 30% 18%,#d3e2ff 0%,#82a0ff 32%,#4a5cf0 62%,#2430c8 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),inset 0 -5vmin 9vmin rgba(15,25,150,.35)}
+#shade{background:#050a50;opacity:0;transition:opacity 1.1s;pointer-events:none}
+.dome{border-radius:50% 50% 0 0/100% 100% 0 0}.orb{border-radius:50%}
+body.sleep #shade{opacity:.4}
+#star{background:#1722c4;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);animation:star 3.2s ease-in-out infinite}
+@keyframes star{50%{transform:scale(1.18) rotate(12deg);opacity:.8}}
+.eye{transition:transform .3s ease}
+.eye>*{position:absolute;transition:opacity .25s,transform .1s}
+.open{inset:0;border-radius:50%;overflow:hidden;opacity:0;background:#fff;box-shadow:inset 0 -3px 8px rgba(40,60,200,.18)}
+.pupil{left:27%;top:27%;width:46%;height:46%;border-radius:50%;background:radial-gradient(circle at 40% 38%,#26338f,#080d4a 70%);will-change:transform}
+.pupil::before{content:"";position:absolute;left:18%;top:14%;width:34%;height:34%;border-radius:50%;background:#fff}
+.arc{left:6%;width:88%;height:52%;opacity:0;border:var(--t,6px) solid transparent;border-radius:50%}
+.sl{top:24%;border-bottom-color:#0a1060}
+.hp{top:24%;border-top-color:#0a1060}
+#stage[data-f=open] .open,#stage[data-f=sleep] .sl,#stage[data-f=happy] .hp{opacity:1}
+body.blink .open{transform:scaleY(.08)}
+body.sus .open{transform:scaleY(.52)}
+body.listen .eye{transform:scale(1.07)}
+.ck{background:radial-gradient(closest-side,rgba(255,120,170,.75),transparent);opacity:0;transition:opacity .3s}
+#stage[data-f=happy] .ck{opacity:1}
+.br{background:#0a1060;border-radius:9px;opacity:0;transition:opacity .2s}
+body.sus .br{opacity:1}
+#mouth{background:#0a1060;border-radius:50%;transition:transform .25s}
+body.sleep #mouth{transform:scale(.6)}
+body.listen #mouth{transform:scale(.85)}
+body.think #mouth{transform:scale(.6)}
+#stage[data-f=happy] #mouth{transform:scale(1.6,.6);border-radius:10% 10% 50% 50%}
+body.talk #mouth{animation:talk .26s ease-in-out infinite alternate}
+body.music:not(.busy) #mouth{animation:sing .4s ease-in-out infinite alternate;border-radius:50%}
+body.sus #mouth{animation:none;transform:scale(1.5,.28);border-radius:50%}
+@keyframes talk{from{transform:scale(.9,.35)}to{transform:scale(1.1,1.3)}}
+@keyframes sing{from{transform:scale(1,.5)}to{transform:scale(1.2,1.1)}}
+body.sleep #rig{animation:breathe 4.4s ease-in-out infinite}
+body.awake #rig{animation:idle 6s ease-in-out infinite}
+body.charging #rig{animation:breathe 3s ease-in-out infinite}
+body.music #rig{animation:bop .5s ease-in-out infinite alternate}
+body.talk #rig{animation:nod .5s ease-in-out infinite alternate}
+body.sus #rig{animation:none}
+@keyframes breathe{50%{transform:scale(1.012,1.022)}}
+@keyframes idle{50%{transform:scale(1.006,1.012)}}
+@keyframes bop{to{transform:scale(1.015,.975)}}
+@keyframes nod{to{transform:scale(1,1.012)}}
+#rig.sq{animation:squish .55s cubic-bezier(.3,1.4,.5,1)!important}
+#rig.wk{animation:wake .7s cubic-bezier(.3,1.4,.5,1)!important}
+@keyframes squish{35%{transform:scale(1.05,.93)}70%{transform:scale(.99,1.03)}}
+@keyframes wake{0%{transform:scale(.97,.95)}60%{transform:scale(1.03,1.05)}}
+#pill{position:fixed;top:8px;left:50%;transform:translateX(-50%);font:600 12px system-ui,sans-serif;color:#ffe9a8;opacity:0;transition:opacity .4s;pointer-events:none}
+body.charging #pill{opacity:.9}
+body.bubble #ui{display:none}
+.abh{display:flex;align-items:center;gap:10px}
+#gear{position:fixed;top:10px;right:10px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(190,210,255,.28);background:rgba(120,150,255,.14);color:#cfe0ff;font-size:19px;line-height:1;opacity:.55;z-index:5}
+#gear:active{opacity:1}
+#panel{position:fixed;inset:0;z-index:9;background:rgba(3,5,20,.72);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:12px}
+#panel[hidden]{display:none}
+.card{width:min(520px,100%);background:linear-gradient(160deg,#16206b,#0b1248);border:1px solid rgba(160,185,255,.3);border-radius:18px;padding:14px 16px;color:#e8eeff;font:14px/1.4 system-ui,sans-serif;box-shadow:0 10px 40px rgba(0,0,30,.6)}
+.hd{display:flex;justify-content:space-between;align-items:center;font-size:17px;margin-bottom:8px}
+.card label{display:block;margin:6px 0 4px;color:#a9bcff;font-size:12.5px}
+.row{display:flex;gap:8px;align-items:center;margin:6px 0;flex-wrap:wrap}
+.card input{flex:1;min-width:0;padding:10px 12px;border-radius:10px;border:1px solid rgba(160,185,255,.35);background:rgba(5,8,40,.7);color:#fff;font-size:14px;outline:none}
+.card input:focus{border-color:#8fb0ff}
+.card button{padding:9px 14px;border-radius:10px;border:1px solid rgba(160,185,255,.35);background:rgba(120,150,255,.16);color:#e8eeff;font-size:13.5px}
+.card button.pri{background:linear-gradient(135deg,#6e90ff,#3a3fe6);border:0;font-weight:600}
+#x{padding:4px 10px;font-size:15px}
+#msg{font-size:12.5px;color:#9fe6b8}
+.sep{height:1px;background:rgba(160,185,255,.22);margin:10px 0}
+.ab{display:flex;flex-direction:column;gap:4px;margin-top:6px;font-size:13.5px}
+.ab button{align-self:flex-start;margin-top:4px}
+.ver{color:#8fa3e6;font-size:12px;margin-top:2px}
+</style></head>
+<body class="sleep">
+<div id="stage" data-f="sleep"><div id="rig">
+<div id="ball" class="dome"></div><div id="shade" class="dome"></div><div id="star"></div>
+<div class="eye" id="eL"><div class="open"><div class="pupil" id="pL"></div></div><div class="arc sl"></div><div class="arc hp"></div></div>
+<div class="eye" id="eR"><div class="open"><div class="pupil" id="pR"></div></div><div class="arc sl"></div><div class="arc hp"></div></div>
+<div class="ck" id="cL"></div><div class="ck" id="cR"></div>
+<div class="br" id="bL" style="transform:rotate(20deg)"></div><div class="br" id="bR" style="transform:rotate(-20deg)"></div>
+<div id="mouth"></div></div>
+<div id="pill">⚡ 0%</div></div>
+<div id="ui"><button id="gear" aria-label="Settings">⚙</button>
+<div id="panel" hidden><div class="card">
+<div class="hd"><b>Settings</b><button id="x" aria-label="Close">✕</button></div>
+<label for="key">Gemini API key</label>
+<div class="row"><input id="key" type="password" placeholder="Paste your Gemini API key here" autocomplete="off" autocapitalize="off" spellcheck="false"><button id="eye" aria-label="Show or hide key">👁</button></div>
+<div class="row"><button id="save" class="pri">Save key</button><button class="lnk" data-u="https://aistudio.google.com/app/apikey">Get a free key</button><span id="msg"></span></div>
+<div class="sep"></div>
+<b>Permissions</b>
+<div class="row"><button class="ps" data-k="overlay">Floating bubble</button><button class="ps" data-k="notif">Notification access</button><button class="ps" data-k="access">Accessibility</button><button class="ps" data-k="write">Brightness</button></div>
+<div class="sep"></div>
+<div class="abh"><svg width="46" height="36" viewBox="0 0 64 50"><defs><radialGradient id="lg" cx="35%" cy="20%" r="90%"><stop offset="0" stop-color="#cfe0ff"/><stop offset=".5" stop-color="#6e8cff"/><stop offset="1" stop-color="#3037d9"/></radialGradient></defs><path d="M2 48A30 46 0 0 1 62 48Z" fill="url(#lg)"/><circle cx="22" cy="32" r="7" fill="#fff"/><circle cx="42" cy="32" r="7" fill="#fff"/><circle cx="23" cy="33" r="3.3" fill="#0a1060"/><circle cx="43" cy="33" r="3.3" fill="#0a1060"/><ellipse cx="32" cy="42" rx="2.6" ry="3.2" fill="#0a1060"/></svg><b>About</b></div>
+<div class="ab"><div>Piko – your friendly phone buddy</div><div>Author: <b>Araf</b></div><div>Discord: <b>araf089</b></div>
+<button class="lnk" data-u="https://discord.gg/PDtCFJR7PM">Join the Discord server</button><div class="ver">Version 1.2</div></div>
+</div></div></div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},A=window.Android||{};
+function hint(){try{var h=A.keyHint();$("msg").textContent=h?"Saved key: "+h:"No key saved yet"}catch(e){}}
+function openP(){$("panel").hidden=false;$("key").value="";hint()}
+$("gear").onclick=openP;$("x").onclick=function(){$("panel").hidden=true};
+$("eye").onclick=function(){var k=$("key");k.type=k.type=="password"?"text":"password"};
+$("save").onclick=function(){var v=$("key").value.trim();
+if(!v){$("msg").textContent="Paste a key first";return}
+if(v.length<20){$("msg").textContent="That key looks too short";return}
+try{A.saveKey(v);$("key").value="";hint();$("msg").textContent="Saved ✓";setTimeout(function(){$("panel").hidden=true},900)}catch(e){$("msg").textContent="Could not save"}};
+Array.prototype.forEach.call(document.querySelectorAll(".lnk"),function(b){b.onclick=function(){try{A.openUrl(b.dataset.u)}catch(e){}}});
+Array.prototype.forEach.call(document.querySelectorAll(".ps"),function(b){b.onclick=function(){try{A.openSetting(b.dataset.k)}catch(e){}}});
+try{if(!/[?&]b=1/.test(location.search)&&!A.hasKey())openP()}catch(e){}
+})();
+</script>
+<script>
+(function(){
+var B=document.body,$=function(i){return document.getElementById(i)};
+function has(c){return B.classList.contains(c)}
+var st=$("stage"),rig=$("rig"),ball=$("ball"),shade=$("shade"),star=$("star"),eL=$("eL"),eR=$("eR"),cL=$("cL"),cR=$("cR"),mo=$("mouth"),bL=$("bL"),bR=$("bR"),pl=$("pL"),pr=$("pR"),pill=$("pill");
+if(/[?&]b=1/.test(location.search))B.classList.add("bubble");
+var tx=0,ty=0,cx=0,cy=0,run=false,K=10,last=Date.now(),nB=0,nL=0,pokeT=0,susI=0;
+function put(e,x,y,w,h){var s=e.style;s.width=w+"px";s.height=h+"px";s.left=x-w/2+"px";s.top=y-h/2+"px"}
+function layout(){
+var W=innerWidth,H=innerHeight,bub=has("bubble"),orb=bub||H>W*1.05,bx,by,bw,bh,ec,e1,e2,ey,my,sy;
+if(orb){var D=bub?Math.min(W,H):Math.min(W*.74,H*.42);bw=bh=D;bx=(W-D)/2;by=bub?(H-D)/2:H*.46-D/2;ec=D*.27;e1=bx+D*.3;e2=bx+D*.7;ey=by+D*.45;my=by+D*.69;sy=by+D*.2}
+else{bx=0;by=0;bw=W;bh=H;ec=Math.min(W*.2,H*.46);e1=W*.33;e2=W*.67;ey=H*.5;my=H*.75;sy=H*.2}
+ball.className=shade.className=orb?"orb":"dome";
+[ball,shade].forEach(function(e){e.style.left=bx+"px";e.style.top=by+"px";e.style.width=bw+"px";e.style.height=bh+"px"});
+put(eL,e1,ey,ec,ec);put(eR,e2,ey,ec,ec);
+put(cL,e1-ec*.2,ey+ec*.62,ec*.62,ec*.32);put(cR,e2+ec*.2,ey+ec*.62,ec*.62,ec*.32);
+put(star,bx+bw/2,sy,ec*.36,ec*.36);put(mo,bx+bw/2,my,ec*.26,ec*.32);
+put(bL,e1,ey-ec*.62,ec*.9,ec*.1);put(bR,e2,ey-ec*.62,ec*.9,ec*.1);
+st.style.setProperty("--t",ec*.085+"px");K=ec*.16;
+rig.style.transformOrigin=bx+bw/2+"px "+(by+bh)+"px";
+look(tx,ty)}
+function face(){st.dataset.f=(has("sus")||has("busy"))?"open":(has("poke")||has("music")||has("charging"))?"happy":has("awake")?"open":"sleep"}
+function loop(){cx+=(tx-cx)*.16;cy+=(ty-cy)*.16;var t="translate3d("+cx*K+"px,"+cy*K+"px,0)";pl.style.transform=t;pr.style.transform=t;
+if(Math.abs(tx-cx)+Math.abs(ty-cy)>.004)requestAnimationFrame(loop);else run=false}
+function look(x,y){tx=x;ty=y;if(!run){run=true;requestAnimationFrame(loop)}}
+function touch(){last=Date.now()}
+function anim(c){rig.classList.remove("sq","wk");void rig.offsetWidth;rig.classList.add(c)}
+rig.addEventListener("animationend",function(){rig.classList.remove("sq","wk")});
+function wake(){if(has("sleep")){B.classList.remove("sleep");B.classList.add("awake");face();anim("wk")}}
+function sleep(){B.classList.remove("awake");B.classList.add("sleep");look(0,0);face()}
+function blink(){B.classList.add("blink");setTimeout(function(){B.classList.remove("blink")},110)}
+function poke(){B.classList.add("poke");face();anim("sq");clearTimeout(pokeT);pokeT=setTimeout(function(){B.classList.remove("poke");face()},1000)}
+setInterval(function(){if(document.hidden)return;var n=Date.now(),idle=n-last;
+if(has("awake")&&n>nB){nB=n+2200+Math.random()*3200;blink();if(Math.random()<.18)setTimeout(blink,220)}
+if(has("awake")&&!has("busy")&&!has("sus")&&!has("poke")){if(idle>25000)sleep();else if(idle>2500&&n>nL){nL=n+1400+Math.random()*2400;look(Math.random()*1.8-.9,Math.random()*1.2-.6)}}
+},300);
+function cl(v){return Math.max(-1,Math.min(1,v))}
+addEventListener("pointerdown",function(e){if(has("bubble")||e.target.closest("#ui"))return;touch();try{Android.tap()}catch(x){}if(has("sleep"))wake();else poke()});
+addEventListener("pointermove",function(e){if(has("bubble")||!has("awake")||has("sus")||has("busy"))return;touch();
+look(cl((e.clientX-innerWidth/2)/(innerWidth/2)),cl((e.clientY-innerHeight*.5)/(innerHeight/2)))},{passive:true});
+addEventListener("resize",layout);
+window.poke=poke;
+window.setMood=function(m){B.classList.toggle("busy",m!="idle");["listen","think","talk"].forEach(function(c){B.classList.toggle(c,c==m)});wake();touch();
+if(m=="think")look(.7,-.9);else if(m=="listen")look(0,.05);else if(m=="talk")look(0,.15);else look(0,0);face()};
+window.fx=function(n,on){B.classList.toggle(n,!!on);face()};
+window.sus=function(on){clearInterval(susI);B.classList.toggle("sus",!!on);face();
+if(on){wake();touch();var k=1;look(1,-.3);susI=setInterval(function(){k=-k;look(k,-.3)},750)}else look(0,0)};
+window.setBattery=function(p){pill.textContent="⚡ "+p+"%"};
+layout();face();
+})();
+</script></body></html>

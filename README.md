@@ -1,10 +1,10 @@
 <div align="center">
 
-#  Piko
+# 🌙 Piko
 
 **Your cute, friendly AI phone buddy for Android**
 
-*Talk to it in English or Bangla · it opens apps, searches, controls your phone and reacts with adorable animations.*
+*Talk to it in English or Bangla · it opens apps, searches, controls your phone — and reacts with adorable animations.*
 
 Made with 💙 by **Araf** · Discord: **araf089**
 
@@ -14,11 +14,11 @@ Made with 💙 by **Araf** · Discord: **araf089**
 
 ---
 
-## What is Piko?
+## ✨ What is Piko?
 
 Piko is a little blue dome with a big personality. Leave your phone on a stand, tap Piko once, and just talk. It listens, answers like a close friend, and can operate your phone by voice. It also reacts to the world around it: it sleeps when idle, gets happy when you plug in the charger, dances when music plays, and gives a suspicious side-eye when a notification arrives.
 
-## Features
+## 🎯 Features
 
 | | Feature |
 |---|---|
@@ -30,16 +30,21 @@ Piko is a little blue dome with a big personality. Leave your phone on a stand, 
 | 🎵 | **Music animation**: Piko bops and sings along with ♪ ♫ when music plays |
 | 🔔 | **Suspicious notification eyes**: squinty eyes and slanted eyebrows when a notification arrives |
 | 💙 | **Cute reactions**: poke it for a squish and floating hearts, it blinks, looks around, and falls asleep when idle |
+| 🫧 | **Floating bubble**: leave the app and Piko shrinks into a small draggable ball (like a chat bubble) that keeps listening. Tap = talk, long-press = open Piko |
+| 📱↔️ | **Portrait + landscape**: full-screen dome when your phone is sideways, a cute round ball when it's upright |
+| 🎧 | **YouTube & Spotify search**: really searches and plays, not just opens the app |
 | ⚙️ | **In-app settings**: paste your Gemini key once, no code editing needed |
 | ⚡ | **Optimized**: GPU-friendly animations, pauses in the background, low battery use |
 
-## Voice commands
+## 🗣️ Voice commands
 
 | Say this | Piko does this |
 |---|---|
 | `open youtube` | Opens YouTube |
 | `open youtube and search mr indian hacker` | Searches YouTube |
 | `search who is araf on google` | Searches Google |
+| `open spotify and play <song>` | Plays the song in Spotify |
+| `play despacito on spotify` / `search lofi on spotify` | Plays / searches in Spotify |
 | `open instagram` / `open camera` / any app name | Opens that app |
 | `dim my brightness` / `increase my brightness` | Changes brightness |
 | `brightness 50 percent` | Sets an exact level |
@@ -56,18 +61,14 @@ Piko is a little blue dome with a big personality. Leave your phone on a stand, 
 
 **Bangla works too:** `ইউটিউব খোল` · `ব্রাইটনেস কমাও` · `ব্রাইটনেস বাড়াও` · `আরাফ কে গুগলে সার্চ করো`
 
-## Download
+## 📲 Install
 
-**[Download the latest Piko.apk](https://github.com/araf089/Piko/releases/latest/download/Piko.apk)**
+1. **Build the APK on GitHub (no Android Studio needed)**
+   - Create a **private** GitHub repo and upload the contents of this folder (include the hidden `.github` folder).
+   - Open **Actions → Build APK → Run workflow**. When it turns green, download **piko-apk**.
+2. Unzip it and install `app-debug.apk` on your phone (allow *Install unknown apps* if asked).
 
-All versions: [Releases page](https://github.com/araf089/Piko/releases/latest)
-
-1. Download `Piko.apk` on your Android phone and tap it to install (allow *Install unknown apps* if asked; Play Protect may warn, choose *Install anyway*).
-2. Open Piko and allow the microphone.
-3. In **Settings (⚙)**, paste your own **free Gemini API key** from [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) and tap **Save key**.
-4. Turn on **Notification access** and **Accessibility → Piko**, then tap the dome and start talking!
-
-## First-time setup
+## 🚀 First-time setup
 
 1. Open Piko and allow the **microphone**.
 2. The **Settings** screen opens on first launch: paste your **Gemini API key** and tap **Save key**.
@@ -76,10 +77,11 @@ All versions: [Releases page](https://github.com/araf089/Piko/releases/latest)
 3. Turn on **Notification access → Piko** (for the suspicious-eyes reaction).
 4. Turn on **Settings → Accessibility → Piko** (for back/home/scroll/tap/type).
    On Android 13+, you may first need *App info → ⋮ → Allow restricted settings*.
-5. The first time you ask for brightness, allow **Modify system settings**.
-6. **Tap the dome** to start talking, and tap again to stop.
+5. Allow **Display over other apps** for Piko (this powers the floating bubble and lets Piko open apps while you are outside the app).
+6. The first time you ask for brightness, allow **Modify system settings**.
+7. **Tap the dome** to start talking, and tap again to stop. Press Home and Piko turns into a floating ball: drag it anywhere, tap it to talk, long-press it to reopen the app. Use the notification's **Stop** button to close Piko completely.
 
-## Permissions & privacy
+## 🔐 Permissions & privacy
 
 | Permission | Why |
 |---|---|
@@ -89,39 +91,44 @@ All versions: [Releases page](https://github.com/araf089/Piko/releases/latest)
 | Notification access | Make Piko react when a notification arrives (content is never read or stored) |
 | Modify system settings | Change screen brightness |
 | Query all packages | Find installed apps to open by name |
+| Display over other apps | Show the floating bubble |
+| Foreground service (microphone) | Keep listening while Piko is in the bubble |
 
 Your API key is stored privately inside the app on your phone. Only the text of your questions is sent to Gemini. Keep your GitHub repo **private** and never share your key.
 
-## Tips & troubleshooting
+## 💡 Tips & troubleshooting
 
-- Piko listens and animates while the **app is on screen**. It pauses when you switch apps and resumes when you come back.
+- Piko keeps listening in the floating bubble after you leave the app (while listening is on). Tap the bubble to turn listening on or off.
+- If voice commands that open other apps do nothing from the bubble, make sure **Display over other apps** is allowed.
 - For reliable Bangla, say **"speak bangla"**. Install the Bengali voice under *Settings → Text-to-speech → Google → Install voice data*.
 - If notification reactions stop, set Piko's battery use to **Unrestricted**.
 - If Piko says it can't reach its brain, check your internet and your API key in Settings.
 - Gemini's free tier is rate-limited. If you hit the limit, wait a minute and try again.
 
-## Project structure
+## 🧩 Project structure
 
 ```
 piko/
 ├─ app/src/main/
 │  ├─ assets/index.html          # Character, animations, settings & about screen
 │  ├─ java/com/araf/buddy/
-│  │  ├─ MainActivity.kt         # Voice loop, commands, Gemini, charging/music logic
+│  │  ├─ MainActivity.kt         # Full-screen UI host
+│  │  ├─ PikoService.kt          # Always-on brain: voice loop, commands, Gemini, floating bubble
+│  │  ├─ Hub.kt                  # Shared state + JS bridge (settings, key)
 │  │  ├─ PhoneService.kt         # Accessibility actions (back, scroll, click, type…)
 │  │  └─ NotifService.kt         # Notification listener
 │  └─ AndroidManifest.xml
 └─ .github/workflows/build.yml   # Builds the APK on GitHub
 ```
 
-## About
+## 👤 About
 
 | | |
 |---|---|
 | **Author** | Araf |
 | **Discord** | araf089 |
 | **Community** | [Join the Discord server](https://discord.gg/PDtCFJR7PM) |
-| **Version** | 1.1 |
+| **Version** | 1.2 |
 
 <div align="center">
 
