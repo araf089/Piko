@@ -18,7 +18,7 @@ Made with 💙 by **Araf** · Discord: **araf089**
 
 Piko is a little blue dome with a big personality. Leave your phone on a stand, tap Piko once, and just talk. It listens, answers like a close friend, and can operate your phone by voice. It also reacts to the world around it: it sleeps when idle, gets happy when you plug in the charger, dances when music plays, and gives a suspicious side-eye when a notification arrives.
 
-## 🎯 Features
+## Features
 
 | | Feature |
 |---|---|
@@ -33,7 +33,7 @@ Piko is a little blue dome with a big personality. Leave your phone on a stand, 
 | ⚙️ | **In-app settings**: paste your Gemini key once, no code editing needed |
 | ⚡ | **Optimized**: GPU-friendly animations, pauses in the background, low battery use |
 
-## 🗣️ Voice commands
+## Voice commands
 
 | Say this | Piko does this |
 |---|---|
@@ -58,7 +58,7 @@ Piko is a little blue dome with a big personality. Leave your phone on a stand, 
 
 ## Download
 
-**[⬇️ Download the latest Piko.apk](https://github.com/araf089/Piko/releases/latest/download/Piko.apk)**
+**[Download the latest Piko.apk](https://github.com/araf089/Piko/releases/latest/download/Piko.apk)**
 
 All versions: [Releases page](https://github.com/araf089/Piko/releases/latest)
 
